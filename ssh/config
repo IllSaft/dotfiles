@@ -27,4 +27,9 @@ Host *
     #ControlMaster auto
     #ControlPath ~/.ssh/master/%r@%h:%p
     #ControlPersist 8h
+Host github.com
+ Hostname ssh.github.com
+ IdentityFile ~/.ssh/GitHub-IllSaft
+ User illsaft
+ Port 443
 
