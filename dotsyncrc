@@ -57,7 +57,7 @@ git/gitconfig
 #screen/screenrc
 #shell/hushlogin
 #shell/urlview
-#ssh
+ssh
 #subversion
 #task/task
 #task/taskrc
@@ -75,7 +75,6 @@ git/gitconfig
 #zsh/zshenv
 zsh/zshrc
 hyper/hyper.js
-.MountEFI/MountEFI.command
 [endfiles]
 
 # Hosts to sync
