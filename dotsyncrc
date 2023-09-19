@@ -73,6 +73,7 @@ ssh
 #zsh/zlogout
 #zsh/zprofile
 #zsh/zshenv
+nano/nanorc
 zsh/zshrc
 hyper/hyper.js
 [endfiles]

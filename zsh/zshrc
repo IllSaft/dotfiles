@@ -130,3 +130,4 @@ alias findtext="grep -r"   # Search for text within files in the current directo
 alias back="cd -"   # Quickly switch between the current and previous directory
 alias c="clear"   # Clear the terminal screen
 alias vscode="open -a 'VSCodium'"
+alias nano='/usr/local/bin/nano'
