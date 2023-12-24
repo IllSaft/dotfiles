@@ -9,7 +9,7 @@
 
 # Global Config
 [user]
-    name = "Scott Howson"
+	name = "Scott Howson"
     email = "scott_howson@corruptiongames.net"
     signingkey = AF7DB8612FAE37D4
 
@@ -150,3 +150,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[pack]
+	threads = 1
+[init]
+	defaultBranch = main

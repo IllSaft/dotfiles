@@ -1,0 +1,1 @@
+/home/howson/.dotfiles/zsh/zshrc

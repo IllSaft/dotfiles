@@ -1,141 +1,71 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
+# Enhanced Oh-My-Zsh Configuration
 export ZSH="$HOME/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="agnoster"
+# ZSH_THEME="powerlevel10k/powerlevel10k"  # Aesthetic and informative theme
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
+ZSH_AUTOSUGGEST_USE_ASYNC=true
+plugins=(
+  git
+  kubectl
+  history
+  emoji
+  encode64
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  docker
+  npm
+  python
+  sudo
+  web-search
+  z
+  git-flow
+  gitfast
+)
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# FZF - Fuzzy Finder Integration
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# Auto-completion settings
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-zstyle ':omz:update' frequency 2
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git kubectl history emoji encode64 zsh-autosuggestions zsh-syntax-highlighting)
+# Powerlevel10k Instant Prompt
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# Enhanced Environment Configuration
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export EDITOR='nano'   # Switched to Nano for more reasons
+# export EDITOR='vim'  # Switched to Vim for more features
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# Git Configuration
+git config --global user.email "Scott_Howson@CorruptionGames.net"
+git config --global user.name "Scott Howson"
+git config --global init.defaultBranch main
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-
-# Custom Aliases
-alias mefi="~/.MountEFI/MountEFI.command"   # Mount EFI
-alias dl="cd ~/Downloads"   # Go to the Downloads folder
-alias dc="cd ~/Documents"   # Go to the Documents folder
-alias gh="cd ~/Documents/GitHub"   # Go to the Documents folder
-alias dt="cd ~/Desktop"   # Go to the Desktop folder
-alias ..="cd .."   # Go up one directory
-alias ...="cd ../.."   # Go up two directories
-alias home="cd ~"   # Go to home directory
-alias cp="cp -i"   # Prompt before overwriting files
-alias mv="mv -i"   # Prompt before overwriting files
-alias rm="rm -i"   # Prompt before deleting files
-alias ls="ls -G"   # Colorize the ls command output
-alias ll="ls -al"   # List all files with details
-alias la="ls -A"   # List all files, including hidden ones
-alias gs="git status"   # Show Git status
-alias ga="git add"   # Git add
-alias gc="git commit -m"   # Git commit with a message
-alias gd="git diff"   # Show Git diff
-alias glog="git log --oneline --decorate --graph"   # Show a prettier Git log
-alias sysinfo="system_profiler SPSoftwareDataType"   # Display system information
-alias myip="curl ifconfig.me"   # Get your public IP address
-alias pinggoogle="ping -c 4 google.com"   # Ping Google to check network connectivity
-alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"   # Run a speedtest
-alias ghclone="git clone"   # Clone a GitHub repository
-alias glclone="git clone"   # Clone a GitLab repository
-alias findfile="find . -type f -name"   # Search for files by name in the current directory
-alias findtext="grep -r"   # Search for text within files in the current directory and subdirectories
-alias back="cd -"   # Quickly switch between the current and previous directory
-alias c="clear"   # Clear the terminal screen
-alias vscode="open -a 'VSCodium'"
-alias nano='/usr/local/bin/nano'
-alias lvim="~/.local/bin/lvim"
-
-# Directory Shortcuts
-alias projects="cd ~/Projects"
-alias work="cd ~/Documents/Work"
-alias notes="cd ~/Documents/Notes"
+# General Aliases
+alias dl="cd ~/Downloads"
+alias dc="cd ~/Documents"
+alias gh="cd ~/Documents/GitHub"
+alias dt="cd ~/Desktop"
+alias ..="cd .."
+alias ...="cd ../.."
+alias home="cd ~"
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -i"
+alias ls="ls --color=auto"
+alias ll="ls -al --color=auto"
+alias la="ls -A --color=auto"
+alias c="clear"
 
 # Git Aliases
+alias gs="git status"
+alias ga="git add"
+alias gc="git commit -m"
+alias gd="git diff"
+alias glog="git log --oneline --decorate --graph"
 alias gaa="git add --all"
 alias gp="git pull"
 alias gps="git push"
@@ -143,29 +73,297 @@ alias gl="git log"
 alias gco="git checkout"
 alias gcm="git checkout main"
 alias grv="git remote -v"
+alias gcl="git clone"
 
-
-# Docker Shortcuts
+# Docker Aliases
 alias d="docker"
 alias dc="docker-compose"
 
-# SSH Shortcuts
-alias winserver="ssh Administrator@Windows-Server"
-
-# Text Editors
-alias editfile="code"
+# Text Editor Aliases
+alias editfile="nano"
 alias editconfig="nano ~/.zshrc"
 
-# System Utilities
-alias sysinfo="system_profiler SPSoftwareDataType"
+# Directory Shortcuts
+alias projects="cd ~/Projects"
+alias work="cd ~/Documents/Work"
+alias notes="cd ~/Documents/Notes"
 
-# Network Tools
-alias myip="curl ifconfig.me"
-alias pinggoogle="ping -c 4 google.com"
-alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
+# New Aliases for Improved Navigation and Resource Monitoring
+alias update="sudo apt update && sudo apt upgrade -y"
+alias install="sudo apt install"
+alias search="apt-cache search"
+alias resource="htop"  # Quick access to system resource monitor
 
-# Miscellaneous
-alias mycustomscript="~/path/to/custom/script.sh"
+# Make Aliases
+alias m='make'
+alias mb='make bonus'
+alias mc='make clean'
+alias mf='make fclean'
+alias mr='make re'
 
-# Add any other custom aliases or functions below this line
+# Custom Functions for VS Code
+vscfn() {
+  if [ -z "$1" ]; then
+    echo "Usage: vsc <filename>"
+    return 1
+  fi
 
+  local filename="$1"
+  local file="${filename%%.*}"  # Extract filename without extension
+  local extension="${filename#*.}"  # Extract extension, if any
+
+  if [ -z "$extension" ]; then
+    extension="txt"  # Default to "txt" if no extension provided
+  fi
+
+  touch "$file.$extension"
+  code-insiders "$file.$extension"
+}
+
+vsc() {
+  if [ -z "$1" ]; then
+    code-insiders .
+  else
+    local directory="$1"
+    code-insiders "$directory"
+  fi
+}
+
+# Custom Function to Create and Move to Directory
+mkd() {
+  if [ -z "$1" ]; then
+    echo "Usage: mkd <directory_name>"
+    return 1
+  fi
+
+  local directory="$1"
+
+  mkdir -p "$directory" && cd "$directory"
+}
+
+
+# Custom Function to Create Directory, Move Into It, Initialize Git,
+# Set Branch to "main," Create .gitignore, Prompt for Repo Name,
+# Update README Title, and Open in VS Code
+gitvs() {
+  local debugging_enabled=false  # Initialize debugging flag to false
+
+  if [[ $- == *x* ]]; then
+    debugging_enabled=true  # Enable debugging if script is run with '-x'
+  fi
+
+  if "$debugging_enabled"; then
+    echo -e "\033[93m[INFO] Debugging Enabled.\033[0m"
+    set -x  # Enable debugging
+  else
+    echo -e "\033[93m[INFO] Debugging Disabled.\033[0m"
+  fi
+
+  local directory=""
+  local repo_name=""
+
+  if [ -z "$1" ]; then
+    echo -e "\e[93m[INFO] Usage: gitvs <repo_name> or gitvs <path/to/repo>\e[0m"
+    return 1
+  elif [[ "$1" == "gh/"* ]]; then
+    repo_name="${1#gh/}"
+    directory="$HOME/Documents/GitHub/$repo_name"
+  elif [[ "$1" != "/"* ]]; then
+    directory="$PWD/$1"
+  else
+    directory="$1"
+  fi
+
+  directory=$(realpath -m "$directory")
+
+  if [[ "$directory" == "$HOME" || "$directory" == "/" ]]; then
+    echo -e "\e[1;91m[ERROR] Cannot create a repo in the root directory or home directory.\e[0m"
+    return
+  fi
+
+  local disallowed_dirs=("Downloads" "Pictures" "Music" "Videos" "Desktop" "Documents" "Templates" "Public")
+  if [[ " ${disallowed_dirs[@]} " =~ " ${directory##*/} " ]]; then
+    echo -e "\e[1;91m[ERROR] Cannot create a repo in $directory.\e[0m"
+    return
+  fi
+
+  if [ -d "$directory" ]; then
+    if [ -d "$directory/.git" ]; then
+      echo -e "\e[93m[INFO] Git repo exists. Loading repo.\e[0m"
+      code-insiders --new-window "$directory"
+      cd "$directory"
+    else
+      echo -e "\e[1;91m[ERROR] Directory exists but is not a Git repository.\e[0m"
+    fi
+    return
+  fi
+
+  echo -e "\e[93m[PROMPT] Enter a title for your README.md (e.g., 'My Project README'):"
+  read -r readme_title
+
+  create_new_git_repository "$directory" "$readme_title"
+}
+
+# Custom Function to Initialize Git Repository
+create_new_git_repository() {
+  mkdir -p "$1"
+  cd "$1" || return
+
+  git init
+  git config --local init.defaultBranch main
+
+  echo "# $2" >README.md
+  echo ".DS_Store" >.gitignore
+
+  git add .
+  git commit -m "Initial commit"
+  git branch -M main
+
+  echo -e "\e[92m[SUCCESS] Git repo initialized at $1\e[0m"
+  code-insiders --new-window "$1"
+}
+
+# Autocomplete function
+_gitvs_repositories() {
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  local suggestions=()
+
+  case "${COMP_WORDS[1]}" in
+    "gh/") 
+      suggestions=($(find "$HOME/Documents/GitHub/" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; 2>/dev/null))
+      ;;
+    "/") 
+      if [[ "$cur" == /* ]]; then
+        suggestions=($(find "${cur}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null))
+      else
+        suggestions=($(find "/" -mindepth 1 -maxdepth 1 -type d 2>/dev/null))
+      fi
+      ;;
+    *) 
+      if [[ "$cur" == /* ]]; then
+        suggestions=($(find "${cur}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null))
+      else
+        suggestions=($(find "$PWD" -mindepth 1 -maxdepth 1 -type d 2>/dev/null))
+      fi
+      ;;
+  esac
+
+  COMPREPLY=($(compgen -W "${suggestions[*]}" -- "$cur"))
+}
+
+complete -o filenames -o dirnames -F _gitvs_repositories gitvs
+
+
+system_monitor(){
+    echo "[INFO] SYSTEM TEMPERATURE MONITORING"
+    echo "----------------------------------"
+
+    # GPU Temperature (using /sys/kernel/debug/dri/0/amdgpu_pm_info)
+    if [ -f "/sys/kernel/debug/dri/0/amdgpu_pm_info" ]; then
+        echo -e "\e[1;36mGPU Temperature:\e[0m"
+        sudo grep "GPU Temperature" /sys/kernel/debug/dri/0/amdgpu_pm_info | sed 's/\(.*\)/  \1/'
+        echo
+    fi
+
+    # CPU Temperature (using lm-sensors)
+    if [ -x "$(command -v sensors)" ]; then
+        echo -e "\e[1;36mCPU Temperature:\e[0m"
+        sudo sensors | grep -E 'Core [0-9]+:'
+        echo
+    fi
+
+    # Motherboard Temperature (using lm-sensors)
+    if [ -x "$(command -v sensors)" ]; then
+        echo -e "\e[1;36mMotherboard Temperature:\e[0m"
+        sudo sensors | grep -i 'MB Temperature'
+        echo
+    fi
+
+    # RAM Temperature (if supported by hardware)
+    # Note: RAM temperature monitoring is not common on consumer systems.
+    # You may need to adjust this part based on your hardware and software setup.
+    # Example: 'sensors | grep -i memory' or check other available sources.
+
+    # HDD/SSD Temperature (using smartctl)
+    # Check the temperature of hard drives and SSDs.
+    if [ -x "$(command -v smartctl)" ]; then
+        echo -e "\e[1;36mHDD/SSD Temperature:\e[0m"
+        sudo smartctl -a /dev/sda | grep "Temperature"
+        # Add more devices if needed, e.g., /dev/sdb, /dev/nvme0n1, etc.
+        echo
+    fi
+
+    # Add more temperature checks for other sensors or devices as needed.
+}
+
+alias temps='system_monitor'
+
+
+
+
+
+initialize_git_repository() {
+  echo -e "\e[93m[PROMPT] Enter a title for your README.md (e.g., 'My Project README'):\e[0m"
+  read -r readme_title
+  git init && git symbolic-ref HEAD refs/heads/main
+  echo -e "# Ignore files\n.DS_Store\nnode_modules/\n*.log\n" > .gitignore
+  echo "# $readme_title" > README.md
+  git add . && git commit -m "Initial commit"
+  code-insiders . README.md || echo -e "\e[1;91m[ERROR] code-insiders not found. Open manually.\e[0m"
+  echo -e "\e[92m[SUCCESS] Git repo initialized at $1.\e[0m"
+}
+
+# System and Networking Tools
+alias updategrub="sudo update-grub"
+alias reloadzsh="source ~/.zshrc"
+alias diskspace="df -h"
+alias meminfo="free -m"
+alias topprocs="ps aux --sort=-%mem | head -10"
+alias myweather="curl wttr.in"
+alias listen="lsof -i"
+alias flushdns="sudo systemd-resolve --flush-caches"
+alias ports="netstat -tulanp"
+
+# Valgrind Shortcuts
+alias v='valgrind'
+alias vmem='valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-limit=no --tool=memcheck'
+
+# Custom Functions
+extract () {
+  if [ -f $1 ]; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1     ;;
+      *.tar.gz)    tar xzf $1     ;;
+      *.bz2)       bunzip2 $1     ;;
+      *.rar)       unrar e $1     ;;
+      *.gz)        gunzip $1      ;;
+      *.tar)       tar xf $1      ;;
+      *.tbz2)      tar xjf $1     ;;
+      *.tgz)       tar xzf $1     ;;
+      *.zip)       unzip $1       ;;
+      *.Z)         uncompress $1  ;;
+      *.7z)        7z x $1        ;;
+      *)           echo "'$1' cannot be extracted via extract()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+# Function for Quick Notes
+note() {
+  local note_dir="$HOME/Notes"
+  mkdir -p "$note_dir"
+  local note_file="$note_dir/$(date +%Y-%m-%d_%H-%M-%S).md"
+  $EDITOR "$note_file"
+}
+
+# Shortcut for creating C files and general file touch
+tc() {
+  touch "$1.c"
+}
+
+# Shortcut for creating sh files and general file touch
+tsh() {
+  touch "$1.sh"
+}
