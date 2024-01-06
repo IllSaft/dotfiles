@@ -62,7 +62,7 @@ module.exports = {
         hypest: {
             darkmode: true,
             vibrancy: true,
-            vibrancyLevel: 0.36,
+            vibrancyLevel: 0.46,
             borders: true,
             hideControls: true
         },
@@ -89,7 +89,7 @@ module.exports = {
     keymaps: {
         'editor:copy': 'ctrl+c',          
         'editor:paste': 'ctrl+v',         
-        'editor:selectAll': 'ctrl+a',     
+        'editor:selectAll': 'ctrl+shift+a', // Changed from 'ctrl+a' to avoid conflict
         'pane:close': 'ctrl+w',           
         'pane:closeAll': 'ctrl+shift+w',  
         'tab:new': 'ctrl+t',              
